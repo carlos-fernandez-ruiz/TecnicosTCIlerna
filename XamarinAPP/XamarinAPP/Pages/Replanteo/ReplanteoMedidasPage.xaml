@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:XamarinAPP.Pages.Controls"
+             mc:Ignorable="d"
+             x:Class="XamarinAPP.Pages.Replanteo.ReplanteoMedidasPage"
+             Visual="Material"
+             Title="Replanteo medidas"
+             BackgroundColor="LightGray"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="primary">#d50e67</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <Image x:Name="logo"
+                   Aspect="AspectFill"
+                   Source="tecnico.jpg}"></Image>            
+            <Picker x:Name="pckTipoMedidas"
+                    Title="Seleccione tipo de medida"
+                    TitleColor="{StaticResource primary}"
+                    FontAttributes="Bold"
+                    BackgroundColor="GhostWhite"
+                    Margin="20,0,20,0">                
+            </Picker>
+            <Entry x:Name="txtValor"
+                   Placeholder="Valor"
+                   Keyboard="Numeric"
+                   BackgroundColor="GhostWhite"
+                   Margin="20,0,20,0"></Entry>
+            <Entry x:Name="txtComentario"
+                   Placeholder="Comentario"
+                   BackgroundColor="GhostWhite"
+                   Margin="20,0,20,0"></Entry>
+            <Button x:Name="btnAgregarmedida"
+                    HeightRequest="40"
+                    FontSize="Medium"
+                    FontAttributes="Bold"
+                    TextColor="White"
+                    Text="Agregar medida"
+                    BackgroundColor="{StaticResource primary}"
+                    HorizontalOptions="Center"
+                    Clicked="btnAgregarmedida_Clicked" />
+
+
+            <ListView  x:Name="lstView"
+                       HasUnevenRows="True"
+                       Margin="0,10,0,10">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <SwipeView>
+                                <!--<ViewCell.ContextActions>
+                                <MenuItem x:Name="btnEliminarMedida"
+                                          CommandParameter="{Binding .}"
+                                          Text="Eliminar"
+                                          Clicked="btnEliminarMedida_Clicked"
+                                          IsDestructive="True"></MenuItem>
+                            </ViewCell.ContextActions>-->
+                                <SwipeView.Content>
+                                    <StackLayout Orientation="Horizontal"
+                                                 HeightRequest="20"
+                                                 Padding="5">
+                                        <Label Margin="20,0,0,0"
+                                               Text="{Binding descripcion}" />
+                                        <Label FontAttributes="Bold"
+                                               Text="{Binding valor}" />
+                                        <Label Margin="0,0,20,0"
+                                               HorizontalOptions="EndAndExpand"
+                                               FontAttributes="Italic"
+                                               Text="{Binding comentario}" />                                       
+                                    </StackLayout>
+                                </SwipeView.Content>
+                                <SwipeView.RightItems>
+                                    <SwipeItems>
+                                        <SwipeItem x:Name="btnEliminar"
+                                                   Text="Eliminar"
+                                                   IsDestructive="True"
+                                                   CommandParameter="{Binding .}"
+                                                   BackgroundColor="Red"
+                                                   Invoked="btnEliminar_Invoked">
+
+                                        </SwipeItem>
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+
+                            </SwipeView>
+                        </ViewCell>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Button x:Name="btnSiguiente"
+                    HeightRequest="40"
+                    FontSize="Medium"
+                    FontAttributes="Bold"
+                    TextColor="White"
+                    Text="SIGUIENTE"
+                    BackgroundColor="{StaticResource primary}"
+                    HorizontalOptions="End" />
+
+
+
+        </StackLayout>
+
+
+    </ContentPage.Content>
+</ContentPage>

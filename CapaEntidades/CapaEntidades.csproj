@@ -41,6 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IntervencionCE.cs" />
+    <Compile Include="MedidaCE.cs" />
+    <Compile Include="MedidaTiposCE.cs" />
+    <Compile Include="TecnicoCE.cs" />
     <Compile Include="UsuariosCE.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

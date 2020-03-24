@@ -56,5 +56,25 @@ namespace CapaDatosAPI
 
         }
 
+        /// <summary>
+        /// Ejecutar un objeto DBComando y devolver el NºRegistros afectados
+        /// </summary>
+        protected long EjecutarComando(DbCommand oDbComando)
+        {
+            try
+            {
+                oDbComando.Connection.Open();
+                return oDbComando.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en BaseDAO-EjecutarComando: " + ex.Message);
+            }
+            finally
+            {
+                oDbComando.Connection.Close();
+            }
+        }
+
     }
 }

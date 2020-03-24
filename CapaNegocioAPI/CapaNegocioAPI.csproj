@@ -41,13 +41,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UsuariosCRN.cs" />
+    <Compile Include="ReplanteoCRN_API.cs" />
+    <Compile Include="UsuariosCRN_API.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CapaDatosAPI\CapaDatosAPI.csproj">
       <Project>{f99ec340-3de3-43c4-8c96-feaca5c7be52}</Project>
       <Name>CapaDatosAPI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CapaEntidades\CapaEntidades.csproj">
+      <Project>{ec235917-0ced-4490-a1cf-6629e1157778}</Project>
+      <Name>CapaEntidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utilidades\Utilidades.csproj">
+      <Project>{b9cedb61-5fb4-4edf-8f14-a1cc946b8af8}</Project>
+      <Name>Utilidades</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

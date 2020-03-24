@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="XamarinAPP.DatosTecnicoPage"
+             Visual="Material"
+             Title="Datos Técnico"
+             BackgroundColor="LightGray">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="primary">#d50e67</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <Image x:Name="logo"
+                   Aspect="AspectFill"
+                   Source="tecnico.jpg}"></Image>
+            <ScrollView>
+                <StackLayout>
+                    <StackLayout Spacing="5">
+                        <Label Margin="20,50,20,0"
+                               FontSize="Medium"
+                               FontAttributes="Bold"
+                               Text="Nombre"></Label>
+
+                        <Entry x:Name="nombreEntry"
+                               BackgroundColor="White"
+                               Margin="20,0,20,0"
+                               Placeholder="Tu nombre">
+                        </Entry>
+
+                        <Label Margin="20,30,20,0"
+                               FontSize="Medium"
+                               FontAttributes="Bold"
+                               Text="Teléfono"></Label>
+                        <Entry x:Name="telefonoEntry"
+                               BackgroundColor="White"
+                               Margin="20,0,20,0"
+                               Keyboard="Telephone"
+                               Placeholder="Teléfono">
+                        </Entry>
+
+                        <Button x:Name="btnConfirmar"
+                                Margin="20,20,20,0"
+                                HeightRequest="50"
+                                TextColor="White"
+                                Text="Confirmar"
+                                BackgroundColor="{StaticResource primary}"
+                                HorizontalOptions="FillAndExpand"
+                                Clicked="btnConfirmar_Clicked" />
+                        <Label x:Name="messageLabel" />
+
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+
+
+</ContentPage>

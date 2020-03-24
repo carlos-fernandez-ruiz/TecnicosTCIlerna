@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"             
+             mc:Ignorable="d"
+             x:Class="XamarinAPP.LoginPage"
+             Visual="Material"
+             Title="TC Tecnicos"
+             BackgroundColor="LightGray">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="primary">#d50e67</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <!--<ContentPage.Content>
+        <StackLayout VerticalOptions="StartAndExpand">
+            <Label Text="Username" />
+            <Entry x:Name="usernameEntry" Placeholder="username" />
+            <Label Text="Password" />
+            <Entry x:Name="passwordEntry" IsPassword="true" />
+            <Button Text="Login" Clicked="OnLoginButtonClicked" />
+            <Label x:Name="messageLabel" />
+        </StackLayout>
+    </ContentPage.Content>-->
+    <ContentPage.Content>
+        <StackLayout>
+            <!--<Image x:Name="logo" Aspect="AspectFill"  Source="{local:ImageResource  XamarinAPP.Images.logo.jpg}"></Image>-->
+            <Image x:Name="logo" Aspect="AspectFill" Source="logo.jpg}"></Image>
+            <ScrollView>
+                <StackLayout Spacing="20" >                    
+                    
+                    <!--<Label HeightRequest="100"  
+                          HorizontalOptions="FillAndExpand" 
+                          Text="TC Tecnicos" 
+                          BackgroundColor="{StaticResource primary}"
+                          TextColor="White" 
+                          FontSize="40" 
+                          HorizontalTextAlignment="Center"
+                          VerticalTextAlignment="Center"/>-->
+
+                    <Entry x:Name="usernameEntry" BackgroundColor="White"
+                    Margin="20,50,20,0"                           
+                    Placeholder="Usuario">
+                    </Entry>
+
+                    <Entry x:Name="intervencionEntry" BackgroundColor="White"
+                    Margin="20,0,20,0" 
+                    Placeholder="Código Intervención">
+                    </Entry>
+
+                    <Button Margin="20,20,20,0" 
+                         HeightRequest="50" 
+                         TextColor="White" 
+                         Text="Acceder"
+                         BackgroundColor="{StaticResource primary}"
+                         HorizontalOptions="FillAndExpand"
+                         Clicked="OnLoginButtonClicked"/>
+                    <Label x:Name="messageLabel"/>
+
+                    <!--<Button Margin="20,0,20,0" 
+                         HeightRequest="50" 
+                         TextColor="White" 
+                         Text="Register"  Clicked="Handle_Clicked"
+                         BackgroundColor="Gray"
+                         HorizontalOptions="FillAndExpand"/>-->
+
+                    <!--<Label Text="Forgot password" 
+                        HorizontalOptions="Center" 
+                        TextColor="{StaticResource primary}"/>-->
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>        
+    </ContentPage.Content>
+</ContentPage>
