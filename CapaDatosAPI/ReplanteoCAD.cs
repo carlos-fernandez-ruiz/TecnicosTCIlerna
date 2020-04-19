@@ -24,9 +24,26 @@ namespace CapaDatosAPI
                 dt = base.EjecutarReader(cmd);
                 return dt;
             }
-            catch (Exception ex)
+            catch 
             {
-                throw ex;
+                throw;
+            }
+        }
+
+        public DataTable getImagenesTipos()
+        {
+            try
+            {
+                DataTable dt = null;
+                DbCommand cmd = base.CrearComandoSP();
+                cmd.CommandText = "Replanteo_ImagenesTiposRecuperar";
+
+                dt = base.EjecutarReader(cmd);
+                return dt;
+            }
+            catch 
+            {
+                throw;
             }
         }
 
@@ -41,9 +58,43 @@ namespace CapaDatosAPI
                 dt = base.EjecutarReader(cmd);
                 return dt;
             }
-            catch (Exception ex)
+            catch 
             {
-                throw ex;
+                throw;
+            }
+        }
+
+        public DataTable getReplanteoFinalizacionByIntervencion(int idIntervencion)
+        {
+            try
+            {
+                DataTable dt = null;
+                DbCommand cmd = base.CrearComandoSP();
+                cmd.CommandText = "Replanteo_FinalizacionRecuperarByIntervencion";
+                cmd.Parameters.Add(new SqlParameter("@idIntervencion", idIntervencion));
+                dt = base.EjecutarReader(cmd);
+                return dt;
+            }
+            catch 
+            {
+                throw;
+            }
+        }
+
+        public DataTable getImagenesByIntervencion(int idIntervencion)
+        {
+            try
+            {
+                DataTable dt = null;
+                DbCommand cmd = base.CrearComandoSP();
+                cmd.CommandText = "Replanteo_ImagenesRecuperarByIntervencion";
+                cmd.Parameters.Add(new SqlParameter("@idIntervencion", idIntervencion));
+                dt = base.EjecutarReader(cmd);
+                return dt;
+            }
+            catch 
+            {
+                throw;
             }
         }
 
@@ -63,6 +114,28 @@ namespace CapaDatosAPI
                 cmd.CommandTimeout = 120;
                 base.EjecutarComando(cmd);
 
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public void insertarReplanteoImagen(ImagenCE oImagen)
+        {
+            try
+            {
+                DbCommand cmd = base.CrearComandoSP();
+                cmd.CommandText = "Replanteo_ImagenesInsertar";
+                cmd.Parameters.Add(new SqlParameter("@idIntervencion", oImagen.idIntervencion));
+                cmd.Parameters.Add(new SqlParameter("@idTipoImagen", oImagen.idTipoImagen));
+                cmd.Parameters.Add(new SqlParameter("@idImagen", oImagen.idImagen));
+                cmd.Parameters.Add(new SqlParameter("@comentario", oImagen.comentario));
+                cmd.Parameters.Add(new SqlParameter("@idUsuario", oImagen.idUsuario));
+                cmd.Parameters.Add(new SqlParameter("@tecnico", oImagen.tecnico));
+                cmd.Parameters.Add(new SqlParameter("@telefonoTecnico", oImagen.telefonoTecnico));
+                cmd.CommandTimeout = 120;
+                base.EjecutarComando(cmd);
             }
             catch
             {

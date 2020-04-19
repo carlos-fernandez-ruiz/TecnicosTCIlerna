@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<src:basePage xmlns:src="clr-namespace:XamarinAPP"
+              xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+              mc:Ignorable="d"
+              x:Class="XamarinAPP.Pages.Replanteo.ReplanteoImagenesPage"
+              Visual="Material"
+              Title="Replanteo imagenes"
+              BackgroundColor="LightGray"
+              NavigationPage.HasNavigationBar="True">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="primary">#d50e67</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <!--<Image x:Name="logo"
+                   Aspect="AspectFill"
+                   Source="tecnico.jpg}"></Image>-->
+            <Picker x:Name="pckTipoImagenes"
+                    Title="Seleccione tipo de imagen"
+                    TitleColor="{StaticResource primary}"
+                    FontAttributes="Bold"
+                    BackgroundColor="GhostWhite"
+                    Margin="20,20,20,0">
+            </Picker>
+            <Entry x:Name="txtComentario"
+                   Placeholder="Comentario"
+                   BackgroundColor="GhostWhite"
+                   Margin="20,0,20,0"></Entry>
+            <StackLayout Orientation="Horizontal">
+                <Button x:Name="btnGaleria"
+                        Margin="20,0,0,0"
+                        WidthRequest="150"
+                        HeightRequest="40"
+                        FontSize="Medium"
+                        FontAttributes="Bold"
+                        TextColor="White"
+                        Text="Galería"
+                        BackgroundColor="{StaticResource primary}"
+                        HorizontalOptions="Center"
+                        Clicked="btnGaleria_Clicked" />
+                <Button x:Name="btnHacerFoto"
+                        Margin="0,0,20,0"
+                        HeightRequest="40"
+                        WidthRequest="150"
+                        FontSize="Medium"
+                        FontAttributes="Bold"
+                        TextColor="White"
+                        Text="CÁMARA"
+                        BackgroundColor="{StaticResource primary}"
+                        HorizontalOptions="EndAndExpand"
+                        Clicked="btnHacerFoto_Clicked" />
+            </StackLayout>
+            <ContentView x:Name="popupListView"
+                         Padding="10, 0"
+                         IsVisible="false">
+
+                <StackLayout Orientation="Vertical"
+                             HeightRequest="300"
+                             WidthRequest="300"
+                             Margin="10,20,10,0"
+                             BackgroundColor="White">
+                    <ListView x:Name="lstImagenes">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextCell Text="{Binding tipoImagen}"
+                                          Detail="{Binding numeroImagenes}"></TextCell>
+
+                            </DataTemplate>
+
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+                    <Button Text="Cerrar"
+                            BackgroundColor="{StaticResource primary}"
+                            x:Name="btnVolver"
+                            Clicked="btnVolver_Clicked"></Button>
+                </StackLayout>
+            </ContentView>
+            <StackLayout Margin="20,0,20,0">
+                <Image x:Name="imagenPrueba"
+                       HeightRequest="220"
+                       Aspect="AspectFit">
+                </Image>
+                <ActivityIndicator x:Name="spinnerEnviarImagen"
+                                   BackgroundColor="White"
+                                   Color="{StaticResource primary}"
+                                   IsVisible="False"                                   
+                                   ></ActivityIndicator>
+            </StackLayout>
+            
+            <Button x:Name="btnSubirImagen"
+                    VerticalOptions="EndAndExpand"
+                    Margin="20,10,20,0"
+                    HorizontalOptions="CenterAndExpand"
+                    HeightRequest="40"
+                    WidthRequest="500"
+                    FontSize="Medium"
+                    FontAttributes="Bold"
+                    TextColor="White"
+                    Text="Enviar Imagen"
+                    BackgroundColor="{StaticResource primary}"
+                    Clicked="btnSubirImagen_Clicked" />
+            <Button x:Name="btnVerListadoImagenes"
+                    VerticalOptions="Center"
+                    Margin="20,0,20,0"
+                    HorizontalOptions="CenterAndExpand"
+                    HeightRequest="40"
+                    WidthRequest="500"
+                    FontSize="Medium"
+                    FontAttributes="Bold"
+                    TextColor="White"
+                    Text="VER Listado Imagenes"
+                    BackgroundColor="LightSeaGreen"
+                    Clicked="btnVerListadoImagenes_Clicked" />
+            <StackLayout Orientation="Horizontal">
+                <Button x:Name="btnAtras"
+                        HeightRequest="40"
+                        Margin="20,20,0,20"
+                        FontSize="Medium"
+                        WidthRequest="150"
+                        FontAttributes="Bold"
+                        TextColor="White"
+                        Text="Volver"
+                        BackgroundColor="{StaticResource primary}"
+                        Clicked="btnAtras_Clicked" />
+                <Button x:Name="btnSiguiente"
+                        HeightRequest="40"
+                        Margin="0,20,20,20"
+                        FontSize="Medium"
+                        FontAttributes="Bold"
+                        TextColor="White"
+                        WidthRequest="150"
+                        HorizontalOptions="EndAndExpand"
+                        Text="SIGUIENTE"
+                        BackgroundColor="{StaticResource primary}"
+                        Clicked="btnSiguiente_Clicked" />
+            </StackLayout>
+
+        </StackLayout>
+
+
+    </ContentPage.Content>
+</src:basePage>

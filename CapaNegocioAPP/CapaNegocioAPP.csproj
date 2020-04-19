@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IntervencionCRN_APP.cs" />
     <Compile Include="ReplanteoCRN_APP.cs" />
     <Compile Include="SingleHttpCliente.cs" />
     <Compile Include="UsuariosCRN_APP.cs" />

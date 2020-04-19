@@ -39,18 +39,35 @@ namespace XamarinAPP
 
 		async Task<bool> AreCredentialsCorrect(string usuario, string codigoIntervencion)
 		{			
-			(UsuariosCE oUsuarioCE, IntervencionCE oIntervencionCE) = await new UsuariosCRN_APP().getUsuarioIntervencionLogin(usuario, codigoIntervencion);
-			if (oUsuarioCE != null && oIntervencionCE!= null)
+			try
 			{
-				App.IsUserLoggedIn = true;
-				App.oUsuarioLogged = oUsuarioCE;
-				App.oIntervencion= oIntervencionCE;
-				return true;
+				(UsuariosCE oUsuarioCE, IntervencionCE oIntervencionCE) = await new UsuariosCRN_APP().getUsuarioIntervencionLogin(usuario, codigoIntervencion);
+				if (oUsuarioCE != null && oIntervencionCE != null)
+				{
+					if (oIntervencionCE.idEstado == 5)
+					{
+						await DisplayAlert("Finalizada", "Esta intervención está finalizada", "Volver");
+						return false;
+					}
+					else
+					{
+						App.IsUserLoggedIn = true;
+						App.oUsuarioLogged = oUsuarioCE;
+						App.oIntervencion = oIntervencionCE;
+						return true;
+					}
+					
+				}
+				else
+				{
+					return false;
+				}
 			} 
-			else
+			catch (Exception ex)
 			{
+				await DisplayAlert("Error", "No se ha podido conectar con el servidor.", "Volver");
 				return false;
-			}
+			}			
 		}
 	}
 }

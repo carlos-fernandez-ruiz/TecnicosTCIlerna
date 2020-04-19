@@ -28,7 +28,7 @@ namespace XamarinAPP
             if (telefono != "") telefonoEntry.Text = telefono;
         }
 
-        private void btnConfirmar_Clicked(object sender, EventArgs e)
+        private async void btnConfirmar_Clicked(object sender, EventArgs e)
         {
             string nombreTecnico = nombreEntry.Text;
             string telefono = telefonoEntry.Text;
@@ -38,12 +38,13 @@ namespace XamarinAPP
                 Preferences.Set("nombreTecnico", nombreTecnico);
                 Preferences.Set("telefonoTecnico", telefono);
                 guardarTecnicoApp();
-
-                Navigation.PushAsync(new NavigationPage(new IntervencionDescripcionPage()));
+                
+                Navigation.InsertPageBefore(new IntervencionDescripcionPage(), this);
+                await Navigation.PopAsync();
             }
             else
             {
-                DisplayAlert("Error", "Debe introducir su nombre y teléfono de contacto", "Reintentar");
+                await DisplayAlert("Error", "Debe introducir su nombre y teléfono de contacto", "Reintentar");
             }
         }
 

@@ -41,7 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiErrorCE.cs" />
+    <Compile Include="ApiLogCE.cs" />
+    <Compile Include="ImagenCE.cs" />
+    <Compile Include="ImagenTiposCE.cs" />
     <Compile Include="IntervencionCE.cs" />
+    <Compile Include="IntervencionFinalizacionCE.cs" />
+    <Compile Include="IntervencionNoTerminadaCE.cs" />
+    <Compile Include="IntervencionNoTerminadaMotivosCE.cs" />
+    <Compile Include="LocalizacionCE.cs" />
     <Compile Include="MedidaCE.cs" />
     <Compile Include="MedidaTiposCE.cs" />
     <Compile Include="TecnicoCE.cs" />

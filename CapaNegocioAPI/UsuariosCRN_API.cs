@@ -22,9 +22,10 @@ namespace CapaNegocioAPI
                 return dtUsuarioIntervencion;
 
             }
-            catch (Exception ex)
+            catch
             {
                 return null;
+                throw;
             }
         }
 

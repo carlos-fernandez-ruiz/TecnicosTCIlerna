@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -10,7 +11,8 @@ namespace CapaNegocioAPP
 {
     public static class SingleHttpCliente
     {
-        private const string URL = "https://10.0.2.2:44303/";
+        private const string URL = "http://2.152.206.82/api/";
+        //private const string URL = "https://10.0.2.2:44303/";
         private static readonly HttpClient cliente;
 
         static SingleHttpCliente()
@@ -31,10 +33,35 @@ namespace CapaNegocioAPP
                 var response = await cliente.PostAsync(URL + metodo, new StringContent(jsonString, Encoding.UTF8, "application/json"));
                 return await response.Content.ReadAsStringAsync();
             }
-            catch (Exception ex)
+            catch 
             {
+                throw;
+            }
+        }
 
-                throw ex;
+        public async static Task<HttpResponseMessage> postImage(Stream imagenStream, string nombreimagen, string direccionImagen, string metodo, Dictionary<string, string> dicClavesValor = null)
+        {
+            try
+            {
+                MultipartFormDataContent form = new MultipartFormDataContent();
+                if (dicClavesValor != null )
+                {
+                    foreach (KeyValuePair<string, string> clave in dicClavesValor)
+                    {
+                        if (clave.Value != "" && clave.Value != null)
+                        {
+                            form.Headers.Add(clave.Key, clave.Value);
+                            form.Add(new StringContent(clave.Key), clave.Value);
+                        }
+                    }
+                }
+                
+                form.Add(new StreamContent(imagenStream), nombreimagen, direccionImagen);                 
+                return (await cliente.PostAsync(URL + metodo, form));
+            }
+            catch
+            {
+                throw;
             }
         }
 
@@ -45,10 +72,9 @@ namespace CapaNegocioAPP
                 string result = await (await cliente.DeleteAsync(URL + metodo)).Content.ReadAsStringAsync();
                 return result;
             }
-            catch (Exception ex)
+            catch 
             {
-                string error = ex.Message;
-                throw ex;
+                throw;
             }
         }
 
@@ -56,14 +82,12 @@ namespace CapaNegocioAPP
         {
             try
             {
-
                 string result = await cliente.GetStringAsync(URL + metodo);
                 return result;
             }
-            catch (Exception ex)
+            catch 
             {
-                string error = ex.Message;
-                return null;
+                throw;
             }
         }
     }

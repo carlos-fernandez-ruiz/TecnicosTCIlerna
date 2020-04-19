@@ -36,6 +36,31 @@ namespace CapaNegocioAPI
             }
         }
 
+        public List<ImagenTiposCE> getImagenesTipos()
+        {
+            try
+            {
+                List<ImagenTiposCE> lstImagenesTipos = new List<ImagenTiposCE>();
+                DataTable dtImagenesTipos = new ReplanteoCAD().getImagenesTipos();
+                if (dtImagenesTipos.Rows.Count > 0)
+                {
+                    foreach (DataRow fila in dtImagenesTipos.Rows)
+                    {
+                        ImagenTiposCE oImagenTipoCE = new ImagenTiposCE();
+                        oImagenTipoCE.idTipoImagen = int.Parse(fila["idTipoImagen"].ToString());
+                        oImagenTipoCE.descripcionTipoImagen = fila["descripcion"].ToString();
+                        oImagenTipoCE.orden = int.Parse(fila["orden"].ToString());
+                        lstImagenesTipos.Add(oImagenTipoCE);
+                    }
+                }
+                return lstImagenesTipos;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         public List<MedidaCE> getMedidasByIntervencion(int idIntervencion)
         {
             try
@@ -64,6 +89,71 @@ namespace CapaNegocioAPI
             }
         }
 
+        public IntervencionFinalizacionCE getReplanteoFinalizacionByIntervencion(int idIntervencion)
+        {
+            IntervencionFinalizacionCE oFinalizacion = new IntervencionFinalizacionCE();
+            try
+            {
+                DataTable dt = new ReplanteoCAD().getReplanteoFinalizacionByIntervencion(idIntervencion);
+                if (dt.Rows.Count > 0)
+                {
+                    DataRow fila = dt.Rows[0];
+                    oFinalizacion.idIntervencion = int.Parse(fila["idIntervencion"].ToString());
+                    oFinalizacion.medidasValidado = bool.Parse(fila["medidasValidado"].ToString());
+                    oFinalizacion.fotografiasValidado = bool.Parse(fila["fotografiasValidado"].ToString());
+                    oFinalizacion.firmaValidado = bool.Parse(fila["firmaValidado"].ToString());
+                    oFinalizacion.codigoFinalizacion = fila["codigoFinalizacion"].ToString();
+                    oFinalizacion.idEstado = int.Parse(fila["idEstado"].ToString());
+
+                }
+                return oFinalizacion;
+            } 
+            catch
+            {
+                throw;
+            }
+        }
+        public List<ImagenCE> getImagenesByIntervencion(int idIntervencion)
+        {
+            try
+            {
+                List<ImagenCE> lstImagenes = new List<ImagenCE>();
+                DataTable dtImagenesIntervencion = new ReplanteoCAD().getImagenesByIntervencion(idIntervencion);
+                if (dtImagenesIntervencion.Rows.Count > 0)
+                {
+                    foreach (DataRow fila in dtImagenesIntervencion.Rows)
+                    {
+                        ImagenCE oImagenCE = new ImagenCE();
+                        oImagenCE.idReplanteoImagen = int.Parse(fila["idReplanteoImagen"].ToString());
+                        oImagenCE.idTipoImagen = int.Parse(fila["idTipoImagen"].ToString());
+                        oImagenCE.descripcion = fila["descripcion"].ToString();
+                        oImagenCE.idImagen = int.Parse(fila["idImagen"].ToString());
+                        oImagenCE.rutaImagen = fila["rutaImagen"].ToString();
+                        oImagenCE.comentario = fila["comentario"].ToString();
+
+                        lstImagenes.Add(oImagenCE);
+                    }
+                }
+                return lstImagenes;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+
+        public void insertarReplanteoImagen(ImagenCE oImagen)
+        {
+            try
+            {
+                new ReplanteoCAD().insertarReplanteoImagen(oImagen);
+            }
+            catch
+            {
+                throw;
+            }
+        }
         public void insertarReplanteoMedida(MedidaCE oMedida)
         {
             try

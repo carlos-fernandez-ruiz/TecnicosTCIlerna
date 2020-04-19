@@ -13,13 +13,13 @@ using CapaNegocioAPP;
 namespace XamarinAPP.Pages.Replanteo
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ReplanteoMedidasPage : ContentPage
+    public partial class ReplanteoMedidasPage : basePage
     {
         ObservableCollection<MedidaCE> lstMedidas;
 
         public ReplanteoMedidasPage()
         {
-            InitializeComponent();            
+            InitializeComponent();
         }
 
         private async void cargarMedidasList()
@@ -32,7 +32,7 @@ namespace XamarinAPP.Pages.Replanteo
         {
             List<MedidaTiposCE> lstMedidasTipos = await new ReplanteoCRN_APP().getMedidasTipos();
             pckTipoMedidas.ItemDisplayBinding = new Binding("descripcionTipoMedida");
-            pckTipoMedidas.ItemsSource = lstMedidasTipos;                
+            pckTipoMedidas.ItemsSource = lstMedidasTipos;
         }
 
         protected override void OnAppearing()
@@ -49,14 +49,14 @@ namespace XamarinAPP.Pages.Replanteo
             {
                 new ReplanteoCRN_APP().insertarReplanteoMedida(oMedidaCE);
                 lstMedidas.Add(oMedidaCE);
-            } 
+            }
             catch (Exception ex)
             {
                 DisplayAlert("Error", ex.Message, "Volver");
             }
-           
+
         }
-       
+
         private MedidaCE getMedidaIntroducida()
         {
             MedidaCE oMedidaCE = new MedidaCE();
@@ -67,7 +67,7 @@ namespace XamarinAPP.Pages.Replanteo
             oMedidaCE.idIntervencion = App.oIntervencion.idIntervencion;
             oMedidaCE.idUsuario = App.oUsuarioLogged.idUsuario;
             oMedidaCE.tecnico = App.oTecnico.tecnico;
-            oMedidaCE.telefonoTecnico = App.oTecnico.telefonoTecnico;            
+            oMedidaCE.telefonoTecnico = App.oTecnico.telefonoTecnico;
 
             return oMedidaCE;
         }
@@ -80,14 +80,19 @@ namespace XamarinAPP.Pages.Replanteo
             {
                 new ReplanteoCRN_APP().eliminarReplanteoMedida(oMedidaCE.idReplanteoMedida);
                 lstMedidas.Remove(oMedidaCE);
-            } 
+            }
             catch (Exception ex)
             {
                 DisplayAlert("Error", ex.Message, "Volver");
             }
-            
         }
+
+        private void btnSiguiente_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new ReplanteoImagenesPage());
+        }
+
     }
 
-   
+
 }

@@ -10,7 +10,7 @@ using Xamarin.Forms.Xaml;
 namespace XamarinAPP
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class IntervencionDescripcionPage : ContentPage
+    public partial class IntervencionDescripcionPage : basePage
     {
         public IntervencionDescripcionPage()
         {
@@ -28,10 +28,18 @@ namespace XamarinAPP
             lblIndicaciones.Text = "Indicaciones: " + App.oIntervencion.comentarioIntervencion;
         }
 
-        async private void btnIniciarIntervencion_Clicked(object sender, EventArgs e)
+        private void btnIniciarIntervencion_Clicked(object sender, EventArgs e)
         {
-            Navigation.InsertPageBefore(new XamarinAPP.Pages.Replanteo.ReplanteoMedidasPage(), this);
-            await Navigation.PopAsync();
+            switch (App.oIntervencion.idTipoIntervencion)
+            {
+                case (int)App.tipoIntervencion.Replanteo:
+                    //Navigation.InsertPageBefore(new XamarinAPP.Pages.Replanteo.ReplanteoMedidasPage(), this);
+                    //Navigation.PushAsync(new XamarinAPP.Pages.Replanteo.ReplanteoMedidasPage(), true);        
+                    Navigation.PushModalAsync(new NavigationPage(new XamarinAPP.Pages.Replanteo.ReplanteoMedidasPage()));                    
+                    break;
+            }          
+           
+            
         }
     }
 }

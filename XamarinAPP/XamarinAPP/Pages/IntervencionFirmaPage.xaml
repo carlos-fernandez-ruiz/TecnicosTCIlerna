@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<src:basePage xmlns:src="clr-namespace:XamarinAPP"
+            xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:SignaturePad.Forms;assembly=SignaturePad.Forms"
+             mc:Ignorable="d"
+              NavigationPage.HasNavigationBar="True"
+              Visual="Material"
+             Title="Firma"
+             BackgroundColor="LightGray"
+             x:Class="XamarinAPP.Pages.IntervencionFirmaPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="primary">#d50e67</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <Image x:Name="logo"
+                   Aspect="AspectFill"
+                   HeightRequest="100"
+                   Source="tecnico.jpg"></Image>
+            <Editor x:Name="observacionesEditor"
+                    BackgroundColor="White"
+                    Margin="20,0,20,0"
+                    Placeholder="Observaciones cliente">
+            </Editor>
+            <Label Margin="20,0,20,0"
+                   FontSize="Medium"
+                   TextColor="{StaticResource primary}"
+                   FontAttributes="Bold"
+                   Text="Firma"></Label>
+            <controls:SignaturePadView x:Name="signatureView"
+                                       CaptionText="Firme encima de la línea"
+                                       ClearText="Borrar"
+                                       Margin="20,0,20,0"
+                                       HeightRequest="150"
+                                       StrokeWidth="3"
+                                       StrokeColor="Black"
+                                       BackgroundColor="White">
+            </controls:SignaturePadView>
+            <StackLayout Orientation="Horizontal" Margin="0,0,0,10">
+                <Label Margin="20,20,10,0"
+                       FontSize="Medium"
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       Text="Firma enviada"></Label>
+                <CheckBox x:Name="chkFirma"                          
+                          Color="Red"></CheckBox>
+                <Button x:Name="btnConfirmar"
+                        Margin="30,15,20,5"                       
+                        TextColor="White"
+                        Text="Enviar firma"
+                        BackgroundColor="{StaticResource primary}"
+                        HorizontalOptions="FillAndExpand"
+                        Clicked="btnConfirmar_Clicked" />
+            </StackLayout>
+
+            <Label Margin="20,0,20,0"
+                   FontSize="Medium"
+                   TextColor="{StaticResource primary}"
+                   FontAttributes="Bold"
+                   Text="Agregar imágen (Parte)"></Label>
+            <StackLayout Orientation="Horizontal">
+                <Button x:Name="btnGaleria"
+                        Margin="20,0,0,0"
+                        WidthRequest="150"
+                        HeightRequest="40"
+                        FontSize="Medium"
+                        FontAttributes="Bold"
+                        TextColor="White"
+                        Text="Galería"
+                        BackgroundColor="{StaticResource primary}"
+                        HorizontalOptions="Center"
+                        Clicked="btnGaleria_Clicked" />
+                <Button x:Name="btnHacerFoto"
+                        Margin="0,0,20,0"
+                        HeightRequest="40"
+                        WidthRequest="150"
+                        FontSize="Medium"
+                        FontAttributes="Bold"
+                        TextColor="White"
+                        Text="CÁMARA"
+                        BackgroundColor="{StaticResource primary}"
+                        HorizontalOptions="EndAndExpand"
+                        Clicked="btnHacerFoto_Clicked" />
+            </StackLayout>
+            
+            <Label Margin="20,0,0,0"
+                   x:Name="lblFotosAgregadas"
+                   FontSize="Medium"
+                   TextColor="Black"
+                   FontAttributes="Bold"
+                   Text="Imágenes agregadas: "></Label>
+
+
+            <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand">
+                <Button x:Name="btnAtras"
+                        HeightRequest="40"
+                        Margin="20,20,0,20"
+                        FontSize="Medium"
+                        WidthRequest="150"
+                        FontAttributes="Bold"
+                        TextColor="White"
+                        Text="Volver"
+                        BackgroundColor="{StaticResource primary}"
+                        Clicked="btnAtras_Clicked" />
+                <Button x:Name="btnSiguiente"
+                        HeightRequest="40"
+                        Margin="0,20,20,20"
+                        FontSize="Medium"
+                        FontAttributes="Bold"
+                        TextColor="White"
+                        WidthRequest="150"
+                        HorizontalOptions="EndAndExpand"
+                        Text="SIGUIENTE"
+                        BackgroundColor="{StaticResource primary}"
+                        Clicked="btnSiguiente_Clicked" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</src:basePage>

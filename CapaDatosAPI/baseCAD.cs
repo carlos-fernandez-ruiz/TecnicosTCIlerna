@@ -56,9 +56,31 @@ namespace CapaDatosAPI
 
         }
 
-        /// <summary>
-        /// Ejecutar un objeto DBComando y devolver el NºRegistros afectados
-        /// </summary>
+        
+        protected long EjecutarScalar(DbCommand oDbComando)
+        {
+
+            long returnValue = 0;
+            try
+            {
+                oDbComando.Connection.Open();
+                oDbComando.CommandTimeout = 180;
+                returnValue = Convert.ToInt64(oDbComando.ExecuteScalar());
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en BaseDAO-EjecutarScalar: " + ex.Message);
+            }
+            finally
+            {
+                oDbComando.Connection.Close();
+            }
+
+            //' Devolver id del comando ejecutado
+            return returnValue;
+        }
+
+     
         protected long EjecutarComando(DbCommand oDbComando)
         {
             try
@@ -75,6 +97,8 @@ namespace CapaDatosAPI
                 oDbComando.Connection.Close();
             }
         }
+
+
 
     }
 }

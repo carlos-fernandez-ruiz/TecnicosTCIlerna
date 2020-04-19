@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<src:basePage xmlns:src="clr-namespace:XamarinAPP"
+            xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -8,7 +9,8 @@
              Visual="Material"
              Title="Intervención"
              BackgroundColor="LightGray"
-             NavigationPage.HasNavigationBar="False">
+             NavigationPage.HasNavigationBar="False"
+              NavigationPage.HasBackButton="False">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Color x:Key="primary">#d50e67</Color>
@@ -72,4 +74,4 @@
 
 
 
-</ContentPage>
+</src:basePage>

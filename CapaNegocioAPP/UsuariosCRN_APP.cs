@@ -36,14 +36,13 @@ namespace CapaNegocioAPP
                     oUsuarioCE = JsonConvert.DeserializeObject<UsuariosCE>(jsonResult, settings);
                     oIntervencionCE = JsonConvert.DeserializeObject<IntervencionCE>(jsonResult, settings);
                 }
-            }
-            catch (Exception ex)
-            {
-                string error = ex.Message;
                 return (oUsuarioCE, oIntervencionCE);
+            }
+            catch 
+            {                
                 throw;
             }
-            return (oUsuarioCE, oIntervencionCE);
+            
         }
     }
 }

@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<src:basePage xmlns:src="clr-namespace:XamarinAPP"
+              xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+              mc:Ignorable="d"
+              x:Class="XamarinAPP.Pages.Replanteo.ReplanteoFinalizacion"
+              Visual="Material"
+              Title="Replanteo Finalizacion"
+              BackgroundColor="LightGray"
+              NavigationPage.HasNavigationBar="True">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="primary">#d50e67</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <Image x:Name="logo"
+                   Aspect="AspectFill"
+                   HeightRequest="100"
+                   Source="tecnico.jpg"></Image>
+
+            <Button Margin="20,20,20,0"
+                    FontSize="Medium"
+                    BackgroundColor="{StaticResource primary}"
+                    FontAttributes="Bold"
+                    Text="Resumen Intervencion"></Button>
+            <Grid Margin="20,0,20,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0"
+                       Grid.Column="1"
+                       Margin="10,20,10,10"
+                       FontSize="Medium"
+                       TextColor="Black"
+                       Text="Medidas"></Label>
+                <CheckBox Grid.Row="0"                          
+                          Grid.Column="0"
+                          x:Name="chkMedidas"
+                          Color="Black"
+                          Margin="0,15,0,0"
+                          IsEnabled="False"></CheckBox>
+                <Label Grid.Row="1"
+                       Grid.Column="1"
+                       Margin="10,20,10,0"
+                       FontSize="Medium"
+                       TextColor="Black"
+                       Text="Fotografías"></Label>
+                <CheckBox Grid.Row="1"
+                          Grid.Column="0"
+                          x:Name="chkFotos"
+                          Color="Black"
+                          Margin="0,15,0,0"
+                          IsEnabled="False"></CheckBox>
+                <Label Grid.Row="2"
+                       Grid.Column="1"
+                       Margin="10,20,10,0"
+                       FontSize="Medium"
+                       TextColor="Black"
+                       Text="Firma"></Label>
+                <CheckBox Grid.Row="2"
+                          Grid.Column="0"
+                          IsChecked="False"
+                          Color="Black"
+                          x:Name="chkFirma"                          
+                          Margin="0,15,0,0"
+                          IsEnabled="False"></CheckBox>
+            </Grid>
+
+            <Button x:Name="btnActualizar"
+                    Margin="20,10,20,0"
+                    HeightRequest="40"
+                    FontSize="Medium"
+                    FontAttributes="Bold"
+                    TextColor="White"
+                    Text="Actualizar validaciones"
+                    BackgroundColor="LightSeaGreen"
+                    Clicked="btnActualizar_Clicked" />
+            <Entry HeightRequest="50"
+                   Margin="20,20,20,10"
+                   Placeholder="Código de cierre"></Entry>
+
+            <Button x:Name="btnNoTerminada"
+                    Margin="0,0,20,0"
+                    HeightRequest="40"                    
+                    FontSize="Medium"
+                    FontAttributes="Bold"
+                    TextColor="White"
+                    Text="No Terminada"
+                    BackgroundColor="{StaticResource primary}"
+                    HorizontalOptions="EndAndExpand"
+                    Clicked="btnNoTerminada_Clicked" />
+            <StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand">
+                <Button x:Name="btnVolver"
+                        Margin="20,0,10,20"
+                        HeightRequest="40"
+                        FontSize="Medium"
+                        FontAttributes="Bold"
+                        TextColor="White"
+                        WidthRequest="150"
+                        Text="Volver"
+                        BackgroundColor="{StaticResource primary}"                        
+                        Clicked="btnVolver_Clicked"/>
+                <Button x:Name="btnFinalizar"
+                        Margin="0,0,20,20"
+                        HeightRequest="40"                        
+                        FontSize="Medium"
+                        WidthRequest="160"
+                        HorizontalOptions="EndAndExpand"
+                        FontAttributes="Bold"
+                        TextColor="White"
+                        Text="Finalizar"                        
+                        BackgroundColor="{StaticResource primary}"
+                        Clicked="btnFinalizar_Clicked" />
+            </StackLayout>
+
+            
+        </StackLayout>
+    </ContentPage.Content>
+</src:basePage>

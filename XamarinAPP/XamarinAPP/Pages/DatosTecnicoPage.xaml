@@ -7,7 +7,8 @@
              x:Class="XamarinAPP.DatosTecnicoPage"
              Visual="Material"
              Title="Datos Técnico"
-             BackgroundColor="LightGray">
+             BackgroundColor="LightGray"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Color x:Key="primary">#d50e67</Color>
@@ -17,7 +18,7 @@
         <StackLayout>
             <Image x:Name="logo"
                    Aspect="AspectFill"
-                   Source="tecnico.jpg}"></Image>
+                   Source="tecnico.jpg"></Image>
             <ScrollView>
                 <StackLayout>
                     <StackLayout Spacing="5">

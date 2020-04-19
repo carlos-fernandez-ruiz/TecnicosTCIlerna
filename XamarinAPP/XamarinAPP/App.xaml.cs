@@ -10,16 +10,19 @@ namespace XamarinAPP
         public static bool IsUserLoggedIn { get; set; }
         public static UsuariosCE oUsuarioLogged;
         public static TecnicoCE oTecnico;
+        public static DateTime ultimaLocalizacion;
         public static IntervencionCE oIntervencion { get; set; }
         public App()
         {
+            //al iniciar la app reiniciamos la ultima localizacion
+            ultimaLocalizacion = DateTime.Now.AddMinutes(-10);
             if (!IsUserLoggedIn)
             {
                 MainPage = new NavigationPage(new LoginPage());
             }
             else
             {
-                MainPage = new NavigationPage(new MainPage());
+                MainPage = new NavigationPage(new IntervencionDescripcionPage());
             }
         }
 

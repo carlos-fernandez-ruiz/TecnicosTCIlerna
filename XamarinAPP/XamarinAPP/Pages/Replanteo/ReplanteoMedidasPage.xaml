@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<src:basePage xmlns:src="clr-namespace:XamarinAPP"
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:controls="clr-namespace:XamarinAPP.Pages.Controls"
              mc:Ignorable="d"
              x:Class="XamarinAPP.Pages.Replanteo.ReplanteoMedidasPage"
              Visual="Material"
              Title="Replanteo medidas"
              BackgroundColor="LightGray"
-             NavigationPage.HasNavigationBar="False">
+             NavigationPage.HasNavigationBar="true">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Color x:Key="primary">#d50e67</Color>
@@ -49,11 +49,12 @@
 
             <ListView  x:Name="lstView"
                        HasUnevenRows="True"
-                       Margin="0,10,0,10">
+                       Margin="20,10,20,10"
+                       SeparatorVisibility="Default">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <SwipeView>
+                            <SwipeView> 
                                 <!--<ViewCell.ContextActions>
                                 <MenuItem x:Name="btnEliminarMedida"
                                           CommandParameter="{Binding .}"
@@ -97,17 +98,17 @@
 
             <Button x:Name="btnSiguiente"
                     HeightRequest="40"
+                    Margin="20,20,20,20"
                     FontSize="Medium"
                     FontAttributes="Bold"
                     TextColor="White"
+                    VerticalOptions="EndAndExpand"
                     Text="SIGUIENTE"
                     BackgroundColor="{StaticResource primary}"
-                    HorizontalOptions="End" />
-
-
-
+                    Clicked="btnSiguiente_Clicked"
+                     />
         </StackLayout>
 
 
     </ContentPage.Content>
-</ContentPage>
+</src:basePage>

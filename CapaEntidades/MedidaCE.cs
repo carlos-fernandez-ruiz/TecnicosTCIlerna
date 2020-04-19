@@ -9,6 +9,7 @@ namespace CapaEntidades
     public class MedidaCE
     {
         public int idReplanteoMedida { get; set; }
+        public int idInstalacionMedida { get; set; }
         public int idTipoMedida { get; set; }
         public int idIntervencion { get; set; }    
         public string descripcion { get; set; }
