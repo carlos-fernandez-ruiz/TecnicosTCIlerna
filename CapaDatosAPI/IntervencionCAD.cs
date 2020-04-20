@@ -113,6 +113,25 @@ namespace CapaDatosAPI
             }
         }
 
+        public void actualizarIntervencionEstado(int idIntervencion, int idEstado)
+        {
+            try
+            {
+                DbCommand cmd = base.CrearComandoSP();
+                cmd.CommandText = "Intervencion_ActualizarEstado";
+                cmd.Parameters.Add(new SqlParameter("@idIntervencion", idIntervencion));
+                cmd.Parameters.Add(new SqlParameter("@idEstado", idEstado));               
+
+                cmd.CommandTimeout = 120;
+                base.EjecutarComando(cmd);
+
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         public IntervencionNoTerminadaCE insertarIntervencionNoTerminada(IntervencionNoTerminadaCE oNoTerminada)
         {
             try

@@ -19,5 +19,11 @@ namespace CapaEntidades
         public string tecnico { get; set; }
         public string telefonoTecnico { get; set; }
 
+        public MedidaCE()
+        {
+            this.comentario = "";
+        }
+
+
     }
 }

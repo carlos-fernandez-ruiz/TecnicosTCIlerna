@@ -34,6 +34,18 @@ namespace CapaNegocioAPI
                 throw;
             }
         }
+        public void actualizarIntervencionEstado(int idIntervencion, int idEstado)
+        {
+            try
+            {
+                new IntervencionCAD().actualizarIntervencionEstado(idIntervencion, idEstado);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
 
         public void insertarLocalizacion(LocalizacionCE oLocalizacion)
         {

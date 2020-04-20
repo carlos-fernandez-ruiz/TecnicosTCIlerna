@@ -15,7 +15,7 @@ namespace API_Rest
             var ex = context.Exception;
 
             string strLogText = "";
-            strLogText += Environment.NewLine + "Source ---\n{0}" + ex.Source;
+            strLogText += Environment.NewLine + "Message ---\n{0}" + ex.Message;           
             strLogText += Environment.NewLine + "StackTrace ---\n{0}" + ex.StackTrace;
             strLogText += Environment.NewLine + "TargetSite ---\n{0}" + ex.TargetSite;
 
