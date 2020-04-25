@@ -146,6 +146,8 @@ namespace XamarinAPP.Pages.Replanteo
                     {
                         await DisplayAlert("Aviso", "Imágen cargada correctamente.", "Volver");
                     }
+                    dictImagenes.Clear();
+                    txtComentario.Text = "";
                 }
             }
             catch (Exception ex)

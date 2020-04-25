@@ -17,21 +17,25 @@ namespace XamarinAPP
     public partial class LoginPage : ContentPage
     {
         public LoginPage()
-        {
-            InitializeComponent();			
+        {			
+			InitializeComponent();			
         }
+
+		protected override bool OnBackButtonPressed()
+		{
+			return base.OnBackButtonPressed();
+		}
 
 
 		async void OnLoginButtonClicked(object sender, EventArgs e)
 		{			
 			if (await AreCredentialsCorrect(usernameEntry.Text, intervencionEntry.Text))
 			{
-				Navigation.InsertPageBefore( new DatosTecnicoPage(), this);
-				await Navigation.PopAsync();
+				await Navigation.PushAsync(new  DatosTecnicoPage());				
 			}
 			else
 			{
-				messageLabel.Text = "El usuario o la intervención no coinciden";
+				messageLabel.Text = "Usuario o intervención incorrectos.";
 				intervencionEntry.Text = string.Empty;
 			}
 		}
@@ -46,7 +50,15 @@ namespace XamarinAPP
 				{
 					if (oIntervencionCE.idEstado == 5)
 					{
-						await DisplayAlert("Finalizada", "Esta intervención está finalizada", "Volver");
+						IntervencionFinalizacionCE oFinalizacion = new IntervencionFinalizacionCE(); ;
+						switch (oIntervencionCE.idTipoIntervencion)
+						{
+							case (int)App.tipoIntervencion.Replanteo:
+								oFinalizacion = await new ReplanteoCRN_APP().getReplanteoFinalizacionByIntervencion(oIntervencionCE.idIntervencion);
+								break;
+
+						}
+						await DisplayAlert("Finalizada", "Esta intervención está finalizada con las siguientes conclusiones: " + Environment.NewLine + oFinalizacion.conclusionIntervencion, "Volver");
 						return false;
 					}
 					else

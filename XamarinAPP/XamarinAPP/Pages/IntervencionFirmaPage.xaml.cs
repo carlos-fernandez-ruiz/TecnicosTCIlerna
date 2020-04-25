@@ -18,7 +18,7 @@ namespace XamarinAPP.Pages
     public partial class IntervencionFirmaPage : basePage
     {
         public const int _ID_TIPO_IMAGEN_FIRMA = 1;
-        public const int _ID_TIPO_IMAGEN_PARTE = 1;
+        public const int _ID_TIPO_IMAGEN_PARTE = 2;
         public IntervencionFirmaPage()
         {
             InitializeComponent();
@@ -42,6 +42,8 @@ namespace XamarinAPP.Pages
                     oImagen.idTipoImagen = _ID_TIPO_IMAGEN_FIRMA;                    
 
                     await new IntervencionCRN_APP().enviarImagenIntervencionFirma(bitMap, nombreImagen, nombreImagen, oImagen);
+                    observacionesEditor.Text = "";
+                    this.getImagenesCargadasAsync();
                     await DisplayAlert("Imagen subida", "Se ha enviado la firma correctamente.", "Volver");
                 }
                 else
@@ -72,7 +74,9 @@ namespace XamarinAPP.Pages
                 string nombreImagen = "Parte_" + App.oIntervencion.idIntervencion.ToString() + "_" + DateTime.Now.ToString().Replace("/", "").Replace(":", "").Replace(" ", "") + ".png";
 
                 await new IntervencionCRN_APP().enviarImagenIntervencionFirma(file.GetStream(), nombreImagen, nombreImagen, oImagen);
+                this.getImagenesCargadasAsync();
                 await DisplayAlert("Imagen subida", "Se ha enviado el parte correctamente.", "Volver");
+                
 
             } 
             catch (Exception ex)
@@ -108,6 +112,7 @@ namespace XamarinAPP.Pages
                 string nombreImagen = "Parte_" + App.oIntervencion.idIntervencion.ToString() + "_" + DateTime.Now.ToString().Replace("/", "").Replace(":", "").Replace(" ", "") + ".png";
 
                 await new IntervencionCRN_APP().enviarImagenIntervencionFirma(file.GetStream(), nombreImagen, nombreImagen, oImagen);
+                this.getImagenesCargadasAsync();
                 await DisplayAlert("Imagen subida", "Se ha enviado el parte correctamente.", "Volver");
 
             } 

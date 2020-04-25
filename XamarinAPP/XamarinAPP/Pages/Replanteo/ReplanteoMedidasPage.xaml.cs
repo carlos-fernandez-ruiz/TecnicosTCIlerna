@@ -44,16 +44,25 @@ namespace XamarinAPP.Pages.Replanteo
 
         private void btnAgregarmedida_Clicked(object sender, EventArgs e)
         {
-            MedidaCE oMedidaCE = getMedidaIntroducida();
-            try
+            if (pckTipoMedidas.SelectedItem != null && txtValor.Text != null && txtValor.Text != "")
+            {                
+                try
+                {
+                    MedidaCE oMedidaCE = getMedidaIntroducida();
+                    new ReplanteoCRN_APP().insertarReplanteoMedida(oMedidaCE);
+                    lstMedidas.Add(oMedidaCE);
+                    txtValor.Text = "";
+                    txtComentario.Text = "";
+                }
+                catch (Exception ex)
+                {
+                    DisplayAlert("Error", ex.Message, "Volver");
+                }
+            } else
             {
-                new ReplanteoCRN_APP().insertarReplanteoMedida(oMedidaCE);
-                lstMedidas.Add(oMedidaCE);
+                DisplayAlert("Error", "El tipo de medida y valor son obligatorios.", "Volver");
             }
-            catch (Exception ex)
-            {
-                DisplayAlert("Error", ex.Message, "Volver");
-            }
+            
 
         }
 

@@ -104,6 +104,10 @@ namespace CapaNegocioAPI
                     oFinalizacion.firmaValidado = bool.Parse(fila["firmaValidado"].ToString());
                     oFinalizacion.codigoFinalizacion = fila["codigoFinalizacion"].ToString();
                     oFinalizacion.idEstado = int.Parse(fila["idEstado"].ToString());
+                    oFinalizacion.tecnico = fila["tecnico"].ToString();
+                    oFinalizacion.telefonoTecnico = fila["telefonoTecnico"].ToString();
+                    oFinalizacion.conclusionIntervencion = fila["conclusionIntervencion"].ToString();
+
 
                 }
                 return oFinalizacion;
@@ -112,6 +116,34 @@ namespace CapaNegocioAPI
             {
                 throw;
             }
+        }
+
+        public IntervencionFinalizacionCE replanteoFinalizacionActualizarEstado(IntervencionFinalizacionCE oFinalizacion)
+        {
+            IntervencionFinalizacionCE oFinalizacionCE = new IntervencionFinalizacionCE();
+            try
+            {
+                DataTable dt = new ReplanteoCAD().replanteoFinalizacionActualizarEstado(oFinalizacion);
+                if (dt.Rows.Count > 0)
+                {
+                    DataRow fila = dt.Rows[0];
+                    oFinalizacionCE.idIntervencion = int.Parse(fila["idIntervencion"].ToString());
+                    oFinalizacionCE.medidasValidado = bool.Parse(fila["medidasValidado"].ToString());
+                    oFinalizacionCE.fotografiasValidado = bool.Parse(fila["fotografiasValidado"].ToString());
+                    oFinalizacionCE.firmaValidado = bool.Parse(fila["firmaValidado"].ToString());
+                    oFinalizacionCE.codigoFinalizacion = fila["codigoFinalizacion"].ToString();
+                    oFinalizacion.tecnico = fila["tecnico"].ToString();
+                    oFinalizacion.telefonoTecnico = fila["telefonoTecnico"].ToString();
+                    oFinalizacionCE.idEstado = int.Parse(fila["idEstado"].ToString());
+                    oFinalizacionCE.conclusionIntervencion =fila["conclusionIntervencion"].ToString();
+                }
+                return oFinalizacionCE;
+            }
+            catch
+            {
+                throw;
+            }
+            
         }
         public List<ImagenCE> getImagenesByIntervencion(int idIntervencion)
         {

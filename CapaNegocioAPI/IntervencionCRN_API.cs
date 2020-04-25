@@ -34,11 +34,12 @@ namespace CapaNegocioAPI
                 throw;
             }
         }
-        public void actualizarIntervencionEstado(int idIntervencion, int idEstado)
+        public DataTable actualizarIntervencionEstado(int idIntervencion, int idEstado)
         {
             try
             {
-                new IntervencionCAD().actualizarIntervencionEstado(idIntervencion, idEstado);
+               return  new IntervencionCAD().actualizarIntervencionEstado(idIntervencion, idEstado);               
+
             }
             catch
             {
@@ -47,11 +48,11 @@ namespace CapaNegocioAPI
         }
 
 
-        public void insertarLocalizacion(LocalizacionCE oLocalizacion)
+        public DataTable insertarLocalizacion(LocalizacionCE oLocalizacion)
         {
             try
             {
-                new IntervencionCAD().insertarLocalizacion(oLocalizacion);
+                return new IntervencionCAD().insertarLocalizacion(oLocalizacion);
             }
             catch
             {

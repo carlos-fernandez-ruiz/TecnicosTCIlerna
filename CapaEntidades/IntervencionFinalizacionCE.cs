@@ -19,5 +19,7 @@ namespace CapaEntidades
         public string  telefonoTecnico { get; set; }
         public int idUsuarioValidacion { get; set; }
         public DateTime fechaUltimaModificacion { get; set; }
+        public string conclusionIntervencion { get; set; }
+
     }
 }

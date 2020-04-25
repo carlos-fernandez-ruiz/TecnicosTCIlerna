@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -99,6 +100,30 @@ namespace CapaNegocioAPP
             try
             {
                 await SingleHttpCliente.postMethod(JsonConvert.SerializeObject(oLocalizacion), "intervencion/insertarLocalizacion");
+            }
+            catch
+            {
+                throw;
+            }
+        }
+        public async Task<IntervencionCE> actualizarIntervencionEstado(int idIntervencion, int idEstado)
+        {
+            try
+            {
+                IntervencionCE oIntervencionCE = null;
+                string jsonResult = (await SingleHttpCliente.getMethod("intervencion/actualizarEstado?idIntervencion=" + idIntervencion.ToString() + "&idEstado=" + idEstado.ToString())).Replace("[", "").Replace("]", "");
+                JObject jsonObject = JObject.Parse(jsonResult);
+                if (jsonObject.Count >= 1)
+                {
+                    var settings = new JsonSerializerSettings
+                    {
+                        NullValueHandling = NullValueHandling.Ignore,
+                        MissingMemberHandling = MissingMemberHandling.Ignore
+                    };
+                                        
+                    oIntervencionCE = JsonConvert.DeserializeObject<IntervencionCE>(jsonResult, settings);
+                }
+                return oIntervencionCE;
             }
             catch
             {

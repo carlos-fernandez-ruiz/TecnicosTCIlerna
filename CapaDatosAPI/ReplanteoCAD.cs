@@ -159,5 +159,25 @@ namespace CapaDatosAPI
                 throw;
             }
         }
+
+        public DataTable replanteoFinalizacionActualizarEstado (IntervencionFinalizacionCE oFinalizacion)
+        {
+            try
+            {
+                DataTable dt = null;
+                DbCommand cmd = base.CrearComandoSP();
+                cmd.CommandText = "Replanteo_FinalizacionActualizarEstado";
+                cmd.Parameters.Add(new SqlParameter("@idIntervencion", oFinalizacion.idIntervencion));
+                cmd.Parameters.Add(new SqlParameter("@idEstado", oFinalizacion.idEstado)); 
+                cmd.Parameters.Add(new SqlParameter("@tecnico", oFinalizacion.idIntervencion));
+                cmd.Parameters.Add(new SqlParameter("@telefonoTecnico", oFinalizacion.telefonoTecnico));
+                dt = base.EjecutarReader(cmd);
+                return dt;
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }

@@ -55,6 +55,10 @@
                         HorizontalOptions="EndAndExpand"
                         Clicked="btnHacerFoto_Clicked" />
             </StackLayout>
+            <Label Text="Pueden agregarse varías imágenes antes de enviar"
+                   Margin="20,0,20,0"
+                   FontSize="Small"
+                   FontAttributes="Italic"></Label>
             <ContentView x:Name="popupListView"
                          Padding="10, 0"
                          IsVisible="false">
@@ -102,7 +106,7 @@
                     FontSize="Medium"
                     FontAttributes="Bold"
                     TextColor="White"
-                    Text="Enviar Imagen"
+                    Text="Enviar Imagenes"
                     BackgroundColor="{StaticResource primary}"
                     Clicked="btnSubirImagen_Clicked" />
             <Button x:Name="btnVerListadoImagenes"

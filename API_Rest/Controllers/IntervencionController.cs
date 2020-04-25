@@ -2,6 +2,7 @@
 using CapaNegocioAPI;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -61,7 +62,7 @@ namespace API_Rest.Controllers
                         }
                         else
                         {
-                            string tipoIntervencionImagen = httpRequest.Headers["tipoIntervencionImagen"].ToString();
+                            string tipoIntervencionImagen = httpRequest.Form["tipoIntervencionImagen"].ToString();
                             string directorioImagenes = System.Configuration.ConfigurationManager.AppSettings["directorioImagenes"];
                             string directorio = System.Configuration.ConfigurationManager.AppSettings[tipoIntervencionImagen];
                            
@@ -90,19 +91,24 @@ namespace API_Rest.Controllers
                             if (idImagen > 0)
                             {
                                 ImagenCE oImagen = new ImagenCE();
-                                int idIntervencion = int.TryParse(httpRequest.Headers["idIntervencion"].ToString(), out idIntervencion) ? idIntervencion : 0;
-                                int idUsuario = int.TryParse(httpRequest.Headers["idUsuario"].ToString(), out idUsuario) ? idUsuario : 0;
-                                int idTipoImagen = int.TryParse(httpRequest.Headers["idTipoImagen"].ToString(), out idTipoImagen) ? idTipoImagen : 0;
+                                int idIntervencion = int.TryParse(httpRequest.Form["idIntervencion"].ToString(), out idIntervencion) ? idIntervencion : 0;                               
+                                int idUsuario = int.TryParse(httpRequest.Form["idUsuario"].ToString(), out idUsuario) ? idUsuario : 0;
+                                int idTipoImagen = int.TryParse(httpRequest.Form["idTipoImagen"].ToString(), out idTipoImagen) ? idTipoImagen : 0;
+                                //int idIntervencion = int.TryParse(httpRequest.Headers["idIntervencion"].ToString(), out idIntervencion) ? idIntervencion : 0;
+                                //int idUsuario = int.TryParse(httpRequest.Headers["idUsuario"].ToString(), out idUsuario) ? idUsuario : 0;
+                                //int idTipoImagen = int.TryParse(httpRequest.Headers["idTipoImagen"].ToString(), out idTipoImagen) ? idTipoImagen : 0;
                                 oImagen.idIntervencion = idIntervencion;
                                 oImagen.idTipoImagen = idTipoImagen;
                                 oImagen.idImagen = (int)idImagen;
                                 oImagen.idUsuario = idUsuario;
-                                oImagen.tecnico = httpRequest.Headers["tecnico"].ToString();
-                                oImagen.telefonoTecnico = httpRequest.Headers["telefonoTecnico"].ToString();
+                                oImagen.tecnico = httpRequest.Form["tecnico"].ToString();
+                                oImagen.telefonoTecnico = httpRequest.Form["telefonoTecnico"].ToString();
+                                //oImagen.tecnico = httpRequest.Headers["tecnico"].ToString();
+                                //oImagen.telefonoTecnico = httpRequest.Headers["telefonoTecnico"].ToString();
                                                                 
-                                if (httpRequest.Headers.AllKeys.Contains("comentario"))
+                                if (httpRequest.Form.AllKeys.Contains("comentario"))
                                 {
-                                    oImagen.comentario = httpRequest.Headers["comentario"].ToString();
+                                    oImagen.comentario = httpRequest.Form["comentario"].ToString();
                                 }                                
 
 
@@ -116,7 +122,7 @@ namespace API_Rest.Controllers
                                         new IntervencionCRN_API().insertarIntervencionFirmaImagen(oImagen);
                                         break;
                                     case "NoTerminada":
-                                        int idIntervencionNoTerminada = int.TryParse(httpRequest.Headers["idIntervencionNoTerminada"].ToString(), out idIntervencionNoTerminada) ? idIntervencionNoTerminada : 0;
+                                        int idIntervencionNoTerminada = int.TryParse(httpRequest.Form["idIntervencionNoTerminada"].ToString(), out idIntervencionNoTerminada) ? idIntervencionNoTerminada : 0;
                                         new IntervencionCRN_API().insertarImagenIntervencionNoTerminada(oImagen, idIntervencion);
                                         break;
                                 }
@@ -166,9 +172,16 @@ namespace API_Rest.Controllers
 
         [HttpPost]
         [Route("intervencion/insertarLocalizacion")]
-        public void insertarLocalizacion([FromBody]LocalizacionCE oLocalizacion)
+        public DataTable insertarLocalizacion([FromBody]LocalizacionCE oLocalizacion)
         {
-            new IntervencionCRN_API().insertarLocalizacion(oLocalizacion);
+            return new IntervencionCRN_API().insertarLocalizacion(oLocalizacion);
+        }
+
+        [HttpGet]
+        [Route("intervencion/actualizarEstado")]
+        public DataTable actualizarIntervencionEstado(int idIntervencion, int idEstado)
+        {
+            return new IntervencionCRN_API().actualizarIntervencionEstado(idIntervencion, idEstado);
         }
     }
 }

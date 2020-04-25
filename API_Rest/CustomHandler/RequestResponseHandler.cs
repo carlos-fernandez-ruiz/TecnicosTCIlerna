@@ -46,9 +46,12 @@ namespace API_Rest
 
             var response = await base.SendAsync(request, cancellationToken);
 
-            byte[] responseMessage;
+            byte[] responseMessage = null;
             if (response.IsSuccessStatusCode)
-                responseMessage = await response.Content.ReadAsByteArrayAsync();
+                if (response.Content != null)
+                {
+                    responseMessage = await response.Content.ReadAsByteArrayAsync();
+                }                
             else
                 responseMessage = Encoding.UTF8.GetBytes(response.ReasonPhrase);
 
@@ -57,7 +60,7 @@ namespace API_Rest
                 Headers = responseHeadersString.ToString(),
                 AbsoluteUri = uriAccessed,
                 Host = userHostAddress,
-                RequestBody = Encoding.UTF8.GetString(responseMessage),
+                RequestBody = responseMessage == null ? "" : Encoding.UTF8.GetString(responseMessage),
                 UserHostAddress = userHostAddress,
                 Useragent = useragent,
                 RequestedMethod = requestedMethod.ToString(),

@@ -11,8 +11,8 @@ namespace CapaNegocioAPP
 {
     public static class SingleHttpCliente
     {
-        private const string URL = "http://2.152.206.82/api/";
-        //private const string URL = "https://10.0.2.2:44303/";
+        //private const string URL = "http://2.152.206.82/api/";
+        private const string URL = "https://10.0.2.2:44303/";
         private static readonly HttpClient cliente;
 
         static SingleHttpCliente()
@@ -28,8 +28,7 @@ namespace CapaNegocioAPP
         public async static Task<string> postMethod(string jsonString, string metodo)
         {
             try
-            {
-                StringContent prueba = new StringContent(jsonString, Encoding.UTF8, "application/json");
+            {                
                 var response = await cliente.PostAsync(URL + metodo, new StringContent(jsonString, Encoding.UTF8, "application/json"));
                 return await response.Content.ReadAsStringAsync();
             }
@@ -50,8 +49,8 @@ namespace CapaNegocioAPP
                     {
                         if (clave.Value != "" && clave.Value != null)
                         {
-                            form.Headers.Add(clave.Key, clave.Value);
-                            form.Add(new StringContent(clave.Key), clave.Value);
+                            //form.Headers.Add(clave.Key,   (clave.Value));
+                            form.Add(new StringContent(clave.Value), clave.Key);
                         }
                     }
                 }
@@ -90,5 +89,6 @@ namespace CapaNegocioAPP
                 throw;
             }
         }
+       
     }
 }

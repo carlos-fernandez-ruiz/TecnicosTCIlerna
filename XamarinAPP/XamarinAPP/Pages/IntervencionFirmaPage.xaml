@@ -47,8 +47,9 @@
                        TextColor="Black"
                        FontAttributes="Bold"
                        Text="Firma enviada"></Label>
-                <CheckBox x:Name="chkFirma"                          
-                          Color="Red"></CheckBox>
+                <CheckBox x:Name="chkFirma"
+                          IsEnabled="False"
+                          Color="Black"></CheckBox>
                 <Button x:Name="btnConfirmar"
                         Margin="30,15,20,5"                       
                         TextColor="White"

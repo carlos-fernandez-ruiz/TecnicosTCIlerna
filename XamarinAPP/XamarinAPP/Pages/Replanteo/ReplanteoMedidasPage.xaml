@@ -28,7 +28,7 @@
                     Margin="20,0,20,0">                
             </Picker>
             <Entry x:Name="txtValor"
-                   Placeholder="Valor"
+                   Placeholder="Valor(en metros)"
                    Keyboard="Numeric"
                    BackgroundColor="GhostWhite"
                    Margin="20,0,20,0"></Entry>

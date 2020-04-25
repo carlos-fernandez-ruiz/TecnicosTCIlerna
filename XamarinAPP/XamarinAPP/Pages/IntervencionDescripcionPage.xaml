@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <src:basePage xmlns:src="clr-namespace:XamarinAPP"
-            xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             x:Class="XamarinAPP.IntervencionDescripcionPage"
-             Visual="Material"
-             Title="Intervención"
-             BackgroundColor="LightGray"
-             NavigationPage.HasNavigationBar="False"
+              xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+              mc:Ignorable="d"
+              x:Class="XamarinAPP.IntervencionDescripcionPage"
+              Visual="Material"
+              Title="Intervención"
+              BackgroundColor="LightGray"
+              NavigationPage.HasNavigationBar="False"
               NavigationPage.HasBackButton="False">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -20,6 +20,7 @@
         <StackLayout>
             <StackLayout>
                 <Image x:Name="logo"
+                       HeightRequest="100"
                        Aspect="AspectFill"
                        Source="tecnico.jpg}"></Image>
             </StackLayout>
@@ -35,10 +36,18 @@
                             <BoxView Color="Gray"
                                      HeightRequest="2"
                                      HorizontalOptions="Fill" />
-                            <Label x:Name="lblTienda" Text="Tienda: " />
-                            <Label x:Name="lblCliente" Text="Cliente: " />
-                            <Label x:Name="lblPoblacion" Text="Población: " />
-                            <Label x:Name="lblDireccion" Text="Dirección: " />
+                            <Label x:Name="lblIdTienda"
+                                   Text="IdTienda: " />
+                            <Label x:Name="lblIdCliente"
+                                   Text="IdCliente: " />
+                            <Label x:Name="lblTienda"
+                                   Text="Tienda: " />
+                            <Label x:Name="lblCliente"
+                                   Text="Cliente: " />
+                            <Label x:Name="lblPoblacion"
+                                   Text="Población: " />
+                            <Label x:Name="lblDireccion"
+                                   Text="Dirección: " />
                         </StackLayout>
                     </Frame>
                     <Frame Margin="0,20,0,0"
@@ -52,8 +61,10 @@
                             <BoxView Color="Gray"
                                      HeightRequest="2"
                                      HorizontalOptions="Fill" />
-                            <Label x:Name="lblTipoIntervencion" Text="Tipo de intervención: " />
-                            <Label x:Name="lblIndicaciones" Text="Indicaciones: " />
+                            <Label x:Name="lblTipoIntervencion"
+                                   Text="Tipo de intervención: " />
+                            <Label x:Name="lblIndicaciones"
+                                   Text="Indicaciones: " />
                         </StackLayout>
                     </Frame>
                     <Button x:Name="btnIniciarIntervencion"
@@ -65,8 +76,7 @@
                             Text="INICIAR INTERVENCIÓN"
                             BackgroundColor="{StaticResource primary}"
                             HorizontalOptions="FillAndExpand"
-                            Clicked="btnIniciarIntervencion_Clicked"
-                             />
+                            Clicked="btnIniciarIntervencion_Clicked" />
                 </StackLayout>
             </ScrollView>
         </StackLayout>

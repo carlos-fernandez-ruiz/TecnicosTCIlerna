@@ -20,6 +20,8 @@ namespace XamarinAPP
 
         private void cargarDatosIntervencion()
         {
+            lblIdTienda.Text = "IdTienda: " + App.oIntervencion.idTienda;
+            lblIdCliente.Text = "IdCliente: " + App.oIntervencion.idCliente;
             lblTienda.Text = "Tienda: " + App.oIntervencion.nombreTienda;
             lblCliente.Text = "Cliente: " + App.oIntervencion.cliente;
             lblDireccion.Text = "Dirección: " + App.oIntervencion.direccion;
@@ -35,7 +37,8 @@ namespace XamarinAPP
                 case (int)App.tipoIntervencion.Replanteo:
                     //Navigation.InsertPageBefore(new XamarinAPP.Pages.Replanteo.ReplanteoMedidasPage(), this);
                     //Navigation.PushAsync(new XamarinAPP.Pages.Replanteo.ReplanteoMedidasPage(), true);        
-                    Navigation.PushModalAsync(new NavigationPage(new XamarinAPP.Pages.Replanteo.ReplanteoMedidasPage()));                    
+                    //Navigation.PushModalAsync(new NavigationPage(new XamarinAPP.Pages.Replanteo.ReplanteoMedidasPage()));
+                    Navigation.PushAsync(new XamarinAPP.Pages.Replanteo.ReplanteoMedidasPage());
                     break;
             }          
            

@@ -26,38 +26,23 @@ namespace XamarinAPP
             getLocalizacion();
         }
 
-        protected async void getLocalizacion()
+        protected void getLocalizacion()
         {
             try
             {
-                //Comprobamos que hayan pasado al menos 5 minutos desde la ultima vez que guardamos la localizacion
-                if((DateTime.Now - App.ultimaLocalizacion).TotalMinutes >= 5)
+                if (App.ultimaLocalizacion != null)
                 {
-                    var location = await Geolocation.GetLastKnownLocationAsync();
-                    LocalizacionCE oLocalizacionCE = null;
-                    
-                    //la localizacion debe ser mas reciente de 5 minutos
-                    if (location != null && location.Timestamp > DateTime.Now.AddMinutes(-5))
+                    //Comprobamos que hayan pasado al menos 5 minutos desde la ultima vez que guardamos la localizacion
+                    if ((DateTime.Now - App.ultimaLocalizacion).TotalMinutes >= 5)
                     {
-                        oLocalizacionCE = getLocalizacionCE(location);
-                    } 
-                    else
-                    {
-                        var request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(10));
-                        var currentLocation = await Geolocation.GetLocationAsync(request);
-                        if (currentLocation != null)
-                        {
-                            oLocalizacionCE = getLocalizacionCE(currentLocation);
-                        }
+                       actualizarLocalizacion();
                     }
-
-                    if (oLocalizacionCE != null)
-                    {
-                        new IntervencionCRN_APP().insertarLocalizacion(oLocalizacionCE);
-                        App.ultimaLocalizacion = DateTime.Now;
-                    }
-                    
-                }         
+                } 
+                else
+                {
+                    actualizarLocalizacion();
+                }                
+                  
             }
             catch (FeatureNotSupportedException fnsEx)
             {
@@ -74,6 +59,33 @@ namespace XamarinAPP
             catch (Exception ex)
             {
                 // Unable to get location
+            }
+        }
+
+        private async Task actualizarLocalizacion()
+        {
+            var location = await Geolocation.GetLastKnownLocationAsync();
+            LocalizacionCE oLocalizacionCE = null;
+
+            //la localizacion debe ser mas reciente de 5 minutos
+            if (location != null && location.Timestamp > DateTime.Now.AddMinutes(-5))
+            {
+                oLocalizacionCE = getLocalizacionCE(location);
+            }
+            else
+            {
+                var request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(10));
+                var currentLocation = await Geolocation.GetLocationAsync(request);
+                if (currentLocation != null)
+                {
+                    oLocalizacionCE = getLocalizacionCE(currentLocation);
+                }
+            }
+
+            if (oLocalizacionCE != null)
+            {
+                new IntervencionCRN_APP().insertarLocalizacion(oLocalizacionCE);
+                App.ultimaLocalizacion = DateTime.Now;
             }
         }
 

@@ -89,7 +89,7 @@ namespace CapaDatosAPI
             }
         }
 
-        public void insertarLocalizacion(LocalizacionCE oLocalizacion)
+        public DataTable insertarLocalizacion(LocalizacionCE oLocalizacion)
         {
             try
             {
@@ -104,7 +104,7 @@ namespace CapaDatosAPI
                 cmd.Parameters.Add(new SqlParameter("@accuracy", oLocalizacion.accuracy));
                 
                 cmd.CommandTimeout = 120;
-                base.EjecutarComando(cmd);
+                return base.EjecutarReader(cmd);
 
             }
             catch
@@ -113,17 +113,18 @@ namespace CapaDatosAPI
             }
         }
 
-        public void actualizarIntervencionEstado(int idIntervencion, int idEstado)
+        public DataTable actualizarIntervencionEstado(int idIntervencion, int idEstado)
         {
             try
             {
+                DataTable result = new DataTable();
                 DbCommand cmd = base.CrearComandoSP();
                 cmd.CommandText = "Intervencion_ActualizarEstado";
                 cmd.Parameters.Add(new SqlParameter("@idIntervencion", idIntervencion));
-                cmd.Parameters.Add(new SqlParameter("@idEstado", idEstado));               
-
+                cmd.Parameters.Add(new SqlParameter("@idEstado", idEstado));
                 cmd.CommandTimeout = 120;
-                base.EjecutarComando(cmd);
+                result = base.EjecutarReader(cmd);
+                return result;
 
             }
             catch

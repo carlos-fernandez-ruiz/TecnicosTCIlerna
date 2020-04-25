@@ -23,5 +23,7 @@ namespace CapaEntidades
         public int idCliente { get; set; }
         public string cliente { get; set; }
 
+
+
     }
 }

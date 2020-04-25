@@ -101,7 +101,7 @@ namespace CapaNegocioAPP
             {
                 string metodo = "replanteo/getReplanteoFinalizacionByIntervencion?idIntervencion=" + idIntervencion;
                 //string jsonResult = base.callMethod(metodo);
-                string jsonResult = (await SingleHttpCliente.getMethod(metodo)).Replace("[", "").Replace("]", "");
+                string jsonResult = (await SingleHttpCliente.getMethod(metodo));
                 JObject jsonObject = JObject.Parse(jsonResult);
                 if (jsonObject.Count >= 1)
                 {
@@ -209,6 +209,33 @@ namespace CapaNegocioAPP
             {
                 throw;
             }
+        }
+
+        public async Task<IntervencionFinalizacionCE> replanteoFinalizacionActualizarEstado(IntervencionFinalizacionCE oFinalizacion)
+        {           
+            try
+            {
+                string jsonResult = await SingleHttpCliente.postMethod(JsonConvert.SerializeObject(oFinalizacion), "replanteo/replanteoFinalizacionActualizarEstado");
+                //string jsonResult = base.callMethod(metodo).Replace("[", "").Replace("]", "");                
+                JObject jsonObject = JObject.Parse(jsonResult);
+                if (jsonObject.Count >= 1)
+                {
+                    var settings = new JsonSerializerSettings
+                    {
+                        NullValueHandling = NullValueHandling.Ignore,
+                        MissingMemberHandling = MissingMemberHandling.Ignore
+                    };
+
+                    oFinalizacion = JsonConvert.DeserializeObject<IntervencionFinalizacionCE>(jsonResult, settings);
+                }
+            }
+
+            catch
+            {
+                throw;
+            }
+            return oFinalizacion;
+
         }
     }
 }

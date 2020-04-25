@@ -38,9 +38,8 @@ namespace XamarinAPP
                 Preferences.Set("nombreTecnico", nombreTecnico);
                 Preferences.Set("telefonoTecnico", telefono);
                 guardarTecnicoApp();
-                
-                Navigation.InsertPageBefore(new IntervencionDescripcionPage(), this);
-                await Navigation.PopAsync();
+                await Navigation.PushAsync(new IntervencionDescripcionPage());
+
             }
             else
             {
