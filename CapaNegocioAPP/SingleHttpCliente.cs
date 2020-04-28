@@ -11,8 +11,8 @@ namespace CapaNegocioAPP
 {
     public static class SingleHttpCliente
     {
-        //private const string URL = "http://2.152.206.82/api/";
-        private const string URL = "https://10.0.2.2:44303/";
+        private const string URL = "http://2.152.206.82/api/";
+        //private const string URL = "https://10.0.2.2:44303/";
         private static readonly HttpClient cliente;
 
         static SingleHttpCliente()
